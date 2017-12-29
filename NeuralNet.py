@@ -65,9 +65,10 @@ output_nodes = 10
 
 learning_rate = float(input("Please enter learning rate: "))
 epochs = int(input("Please enter count of epochs: "))
+loops = int(input("Please, enter count of cycles: "))
 
 loop = 0
-while loop <= 20:
+while loop < loops:
     time0 = time.time()
     N = neuralNetwork(input_nodes, hidden_nodes, output_nodes, learning_rate)
     #---Initialization-of-class-object-END------------------------------------------
@@ -127,11 +128,11 @@ while loop <= 20:
     print("\nPerfomance equel: [", (performance * 100), '] percents!')
 
     performance_csv = []
-    performance_csv.append(performance)
-    performance_csv.append(learning_rate)
+    performance_csv.append(format(performance, '.4f'))
+    performance_csv.append(format(learning_rate, '.6f'))
     performance_csv.append(hidden_nodes)
     performance_csv.append(epochs)
-    performance_csv.append(timeDiff)
+    performance_csv.append(format(timeDiff, '.3f'))
     performance_csv.append(';  ')
     print('Perfomance, learnRate, hNodes, epochs, timeDiff')
     print(performance_csv)
@@ -141,5 +142,5 @@ while loop <= 20:
     wr.writerows([performance_csv])
     csv_file.close()
     #===Convert-Data-And-Put-Into-File=END==========================================
-    learning_rate += 0.001
+    learning_rate += 0.0001
     loop += 1
